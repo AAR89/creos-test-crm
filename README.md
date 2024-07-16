@@ -1,30 +1,72 @@
-# React + TypeScript + Vite
+Creos
+Тестовое задание FrontEnd Junior 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Привет коллега. Предлагаем тебе выполнить тестовое задания для оценки твоих профессиональных качеств.
 
-Currently, two official plugins are available:
+Задача: Тебе предстоит сделать небольшую CRM систему с графиками и таблицей. Так же поработать с данными.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Техническое требование:
+    Сборщик проекта - Vite(React + TypeScript)
+    Redux Toolkit
+    UI - любая библиотека(или своё решение)
+    Визуализация данных на графиках - любая библиотека
+    Адаптивный дизайн от 360px
 
-## Expanding the ESLint configuration
+Требование к проекту:
+    Шапка
+        Переключение локалей(RU, EN) для интерфейса
+        Переключение тем(светлая. темная)
+        Вывести текущий номер рабочей недели
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+    Главная страница
+        - отобразить последние 10 комментариев. Вывести: аватар дизайнера, имя пользователя, относительное время(минут, часов, дней назад), задача, сообщение
+        - отобразить топ 10 дизайнеров. Рассчитcommit ать: медиана затраченного *времени на выполнение задачи, количество выполненных задач. Отсортировать по меньшему времени, максимальное количество закрытых задач. Вывести: аватар дизайнера, имя пользователя, время, количество
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+    Страница задач
+        - построить график закрытых за месяц задач с распределением по **номерам рабочей недели. График состоит из 3 частей: ***прибыль, ****расходы и разница между прибылью и расходом. По умолчанию выводить 8 последних рабочих недель(предусмотреть выбор количества отображаемых недель). 
+Визуальная часть на ваше усмотрение, пример графика:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+   
+
+
+
+
+     - круговая диаграмма с процентным соотношением статусов всех задач
+Пример диаграммы:
+
+
+    Страница дизайнера
+        - отобразить таблицу дизайнеров. Вывести: аватар дизайнера, имя дизайнера, почта, количество задач закрытых и в процессе. Сортировка по имени дизайнера, почте. Фильтр по статусам, проектам. Пагинация
+
+   
+
+
+ *Время выполнения задачи дизайнером - date_finished_by_designer - date_started_by_designer
+    **Номер рабочей недели - Это календарный номер недели со смещением на 11 часов. Например: 08.07.2024 10:59 календарный номер - 28, рабочий 27
+    ***Прибыль - received_from_*, ..received_from_client
+    ***Расход - send_to_*, ..send_to_project_manage
+
+API
+    https://sandbox.creos.me/api/v1/
+
+    /designer - query params:
+        status - "New", "In Progress", "Done"
+        key - ключ проекта
+        ordering - сортировка email, -email, username, -username
+        page - пагинация
+        limit - по умолчанию 16 дизайнеров максимум 128
+    /issue - query params:
+        status - "New", "In Progress", "Done"
+        key - ключ проекта
+
+Результат работы
+    Исходный код проекта на github/gitlab
+    Описание проекта - что удалось выполнить(чекбоксы), какие библиотеки использовали(ui, визуализация), другие особенности
+    Build проекта - должен собираться без ошибок
+
+Критерии оценки:
+    выполнение всех требований к проекту
+    самостоятельность принятия решений
+
